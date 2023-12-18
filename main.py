@@ -1,5 +1,7 @@
-from tkinter import *
 import math
+from tkinter import *
+import pygame
+
 
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
@@ -7,14 +9,16 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 25
+WORK_MIN = 1
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 15
 reps = 0
 my_timer = None
-
-
-# ---------------------------- TIMER RESET ------------------------------- # 
+n = None
+def play():
+    pygame.mixer.music.load("cheer_and_applause.mp3")
+    pygame.mixer.music.play(loops=0)
+# ---------------------------- TIMER RESET ------------------------------- #
 def reset_timer():
     global reps
     global my_timer
@@ -26,12 +30,13 @@ def reset_timer():
     check_marks.config(text='')
 
 
-# ---------------------------- TIMER MECHANISM ------------------------------- # 
+# ---------------------------- TIMER MECHANISM ------------------------------- #
 
 
 def start_timer():
     global reps
     reps +=1
+
     work_sec = WORK_MIN * 60
     short_break_sac = SHORT_BREAK_MIN * 60
     long_break_sec = LONG_BREAK_MIN * 60
@@ -49,7 +54,9 @@ def start_timer():
         time_count(work_sec)
         timer.config(text='Work time', fg=GREEN)
         timer.place(x=45, y=0)
-# ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
+
+
+# ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 
 
 def time_count(count):
@@ -68,7 +75,9 @@ def time_count(count):
         for _ in range(work_sessions):
             marks += '✔'
             check_marks.config(text=marks)
-
+            #playsound('cheer_and_applause.mp3')
+        pygame.mixer.init()
+        play()
 # ---------------------------- UI SETUP ------------------------------- #
 
 
