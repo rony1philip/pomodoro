@@ -16,7 +16,7 @@ reps = 0
 my_timer = None
 n = None
 def play():
-    pygame.mixer.music.load("cheer_and_applause.mp3")
+    pygame.mixer.music.load("../time clock/cheer_and_applause.mp3")
     pygame.mixer.music.play(loops=0)
 # ---------------------------- TIMER RESET ------------------------------- #
 def reset_timer():
